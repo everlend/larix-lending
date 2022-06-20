@@ -642,6 +642,23 @@ impl LendingInstruction {
                 buf.push(11);
                 buf.extend_from_slice(&liquidity_amount.to_le_bytes());
             }
+            Self::InitMining => {
+                buf.push(16);
+            }
+            Self::RefreshMining => {
+                buf.push(17);
+            }
+            Self::DepositMining { amount } => {
+                buf.push(18);
+
+            }
+            Self::WithdrawMining { amount } => {
+                buf.push(19);
+                buf.extend_from_slice(&amount.to_le_bytes());
+            }
+            Self::ClaimMiningMine => {
+                buf.push(20);
+            }
             Self::ClaimObligationMine => {
                 buf.push(21);
             }
@@ -928,3 +945,4 @@ pub fn claim_obligation_mine(
         data: LendingInstruction::ClaimObligationMine.pack(),
     }
 }
+

@@ -650,7 +650,7 @@ impl LendingInstruction {
             }
             Self::DepositMining { amount } => {
                 buf.push(18);
-
+                buf.extend_from_slice(&amount.to_le_bytes());
             }
             Self::WithdrawMining { amount } => {
                 buf.push(19);

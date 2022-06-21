@@ -666,6 +666,11 @@ impl LendingInstruction {
                 buf.push(25);
                 buf.extend_from_slice(&liquidity_amount.to_le_bytes());
             }
+            Self::ClaimMine { claim_times, claim_ratio} => {
+                buf.push(26);
+                buf.extend_from_slice(&claim_times.to_le_bytes());
+                buf.extend_from_slice(&claim_ratio.to_le_bytes());
+            }
             _ => {
                 // TODO: implementation
             }
